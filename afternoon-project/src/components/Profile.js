@@ -14,8 +14,8 @@ class Profile extends Component {
         }
         this.handleClickNext = this.handleClickNext.bind(this)
         this.handleClickPrevious = this.handleClickPrevious.bind(this)
-        this.countUp = this.countUp.bind(this)
-        this.countDown = this.countDown.bind(this)
+        this.countUpdate = this.countUpdate.bind(this)
+        
     }
 
     handleClickNext(){
@@ -24,7 +24,8 @@ class Profile extends Component {
         }else{
             this.setState({currentProfile: this.state.currentProfile + 1})
         }   
-        this.countUp()
+        this.countUpdate()
+        
     }
 
     handleClickPrevious(){
@@ -33,25 +34,19 @@ class Profile extends Component {
         }else{
             this.setState({currentProfile: this.state.currentProfile - 1})
         }
-        this.countDown()
+        this.countUpdate()
     }
 
-    countUp(){
-        let lastIndex= this.state.profiles.length-1;
-        for(let i=0; i <= lastIndex; i++){
-            if(i === 0){
-                this.setState({count: 1})
-            }else if(i === lastIndex){
-                this.setState({count: 25})
-            }else{
-                this.setState({count: i =1})
-            }
-        }
+    countUpdate(){
+       let idNum = this.state.profiles.map((profile, index) => {
+           if(this.state.currentProfile === index){
+               return profile.id
+           }
+       })
+       this.setState({count: idNum})
     }
 
-    countDown(){
-        this.setState({count: this.state.currentProfile - 1})
-    }
+//why is it skipping the second profile (backwards and forwards) and thus shifting the id numbers over one every time through the loop? how can it shift id nums?? those are immutable data points, right? 
 
     render(){
         const profilesMap = this.state.profiles.map( (profile, index) => {
