@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import ProfileInfo from './ProfileInfo';
 import data from '../data';
+import Count from './Count';
 
 
 class Profile extends Component {
@@ -14,8 +15,6 @@ class Profile extends Component {
         }
         this.handleClickNext = this.handleClickNext.bind(this)
         this.handleClickPrevious = this.handleClickPrevious.bind(this)
-        this.countUpdate = this.countUpdate.bind(this)
-        
     }
 
     handleClickNext(){
@@ -24,8 +23,6 @@ class Profile extends Component {
         }else{
             this.setState({currentProfile: this.state.currentProfile + 1})
         }   
-        this.countUpdate()
-        
     }
 
     handleClickPrevious(){
@@ -34,19 +31,7 @@ class Profile extends Component {
         }else{
             this.setState({currentProfile: this.state.currentProfile - 1})
         }
-        this.countUpdate()
-    }
-
-    countUpdate(){
-       let idNum = this.state.profiles.map((profile, index) => {
-           if(this.state.currentProfile === index){
-               return profile.id
-           }
-       })
-       this.setState({count: idNum})
-    }
-
-//why is it skipping the second profile (backwards and forwards) and thus shifting the id numbers over one every time through the loop? how can it shift id nums?? those are immutable data points, right? 
+    } 
 
     render(){
         const profilesMap = this.state.profiles.map( (profile, index) => {
@@ -57,12 +42,16 @@ class Profile extends Component {
         
         return(
             <div>
-                <h1 className='Count'>{this.state.count}/25</h1> 
-                <div className="Profile"> {profilesMap}</div>
-                <span className="PN-Buttons">
+                <div className='Count-Profile'>
+                  <Count className="Count" currentIndex={this.state.currentProfile}/>
+                  <div className='Info'>{profilesMap}</div>
+                 </div>
+                <div>
+                  <span className="PN-Buttons">
                     <button onClick={this.handleClickPrevious}>Previous</button>
-                    <button onClick={this.handleClickNext}>Next</button>
-                </span>
+                     <button onClick={this.handleClickNext}>Next</button>
+                    </span>
+                 </div>
             </div>
         )
     }

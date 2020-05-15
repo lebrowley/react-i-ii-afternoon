@@ -14,18 +14,41 @@
   width: 100%;
   background-color: rgb(6, 173, 250);
   padding: 20px 20px;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
+}
+
+.Count-Profile {
+  display: flex;
+	flex-direction: row-reverse;
+	flex-wrap: nowrap;
+	justify-content: space-around;
+	align-items: stretch;
+  align-content: stretch;
+  width: 100vw;
 }
 
 .Count {
-  float: right;
+  height: 400px;
+  width: 100vw;
+} 
+
+.Counter{
   padding-right: 50px;
+  background-color: white;
+  height: 400px;
+  margin-top: 20px;
+  margin-right:400px;
+  font-size: 40px;
 }
 
-.Profile {
+.Info {
  background-color: white;
  padding-left: 50px;
  padding-bottom: 20px;
+ margin-bottom: 75px;
+ margin-left: 100px;
+ height: 400px;
+ width: 100%;
 }
 
 .PN-Buttons {
