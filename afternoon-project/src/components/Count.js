@@ -6,6 +6,3 @@ function Count(props){
 
 export default Count;
 
-
-
-//making counter a prop and passing down state info to it in this way helps free up lines of code so that is more simplified, streamlined etc
